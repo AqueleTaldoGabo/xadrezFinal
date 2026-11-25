@@ -46,11 +46,11 @@ Aplicativo mobile de xadrez desenvolvido com **Flutter** como trabalho final da 
 1. Instale o [Flutter](https://docs.flutter.dev/get-started/install) e configure o ambiente Android.
 2. Clone este repositório:
    ```bash
-   git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
+   git clone https://github.com/AqueleTaldoGabo/xadrezFinal.git
    ```
 3. Entre na pasta do projeto:
    ```bash
-   cd SEU-REPOSITORIO
+   cd xadrezFinal
    ```
 4. Instale as dependências:
    ```bash
