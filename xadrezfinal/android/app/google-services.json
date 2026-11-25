@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "393444593141",
+    "project_id": "xadrez-final",
+    "storage_bucket": "xadrez-final.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393444593141:android:4b8ef1d69fe628c62ba4bc",
+        "android_client_info": {
+          "package_name": "com.example.xadrezfinal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGaRteankNE1ilquHkeHxkUIH1boo0_e4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
