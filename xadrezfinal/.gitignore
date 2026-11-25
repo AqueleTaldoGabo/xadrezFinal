@@ -12,3 +12,6 @@ android/key.properties
 *.jks
 *.keystore
 .DS_Store
+
+# FVM Version Cache
+.fvm/

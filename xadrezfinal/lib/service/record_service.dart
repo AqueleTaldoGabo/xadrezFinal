@@ -7,8 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/chess_record.dart';
 import 'local_db.dart';
 
-/// Offline-first: SQLite guarda somente alterações ainda não confirmadas.
-/// Os registros já enviados são lidos do Firestore (incluindo cache offline).
 class RecordService {
   RecordService._() {
     _connectivitySubscription = Connectivity().onConnectivityChanged.listen(
@@ -53,7 +51,6 @@ class RecordService {
         );
       }
     } catch (_) {
-      // Quando offline, tenta os documentos que o Firestore já armazenou em cache.
       try {
         final snapshot = await _collection.get(
           const GetOptions(source: Source.cache),
@@ -65,7 +62,6 @@ class RecordService {
         );
         }
       } catch (_) {
-        // A primeira abertura offline pode não ter cache ainda.
       }
     }
 
@@ -84,7 +80,6 @@ class RecordService {
   }
 
   Future<void> save(ChessRecord record) async {
-    // Primeiro grava localmente: não perde a alteração se a rede falhar.
     final uid = _uid;
     if (uid == null) throw StateError('Faça login para salvar partidas.');
     await _local.save(uid, record.copyWith(synced: false));
@@ -93,7 +88,6 @@ class RecordService {
   }
 
   Future<void> remove(String id) async {
-    // Registra a exclusão antes de remover localmente: será replicada na nuvem.
     final uid = _uid;
     if (uid == null) throw StateError('Faça login para excluir partidas.');
     await _local.delete(uid, id);
@@ -119,7 +113,6 @@ class RecordService {
       for (final record in await _local.pending(uid)) {
         await collection.doc(record.id).set(record.toCloud());
         await _local.saveMedia(uid, record.id, record.imagePath);
-        // Só remove da fila local depois da confirmação do Firestore.
         await _local.removePendingRecord(uid, record.id);
         changed = true;
       }
